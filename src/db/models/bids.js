@@ -8,10 +8,11 @@ class Bids {
   // to provide the controller with instances that
   // have access to the instance methods isValidPassword
   // and update.
-  constructor({ id, username, password_hash }) {
-    this.id = id;
-    this.username = username;
-    this.#passwordHash = password_hash;
+  constructor({ amount, sellerID, listingID, buyerID}) {
+    this.amount = amount;
+    this.sellerID = sellerID;
+    this.listingID = listingID;
+    this.buyerID = buyerID;
   }
 
   static async list() {

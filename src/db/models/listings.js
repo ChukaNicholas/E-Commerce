@@ -1,19 +1,20 @@
 const knex = require('../knex');
 const authUtils = require('../../utils/auth-utils');
 
-class Purchases {
+class Listing {
   #passwordHash = null;
 
   // This constructor is used ONLY by the model
   // to provide the controller with instances that
   // have access to the instance methods isValidPassword
   // and update.
-  constructor({ amountPaid, sellerID, listingID, buyerID, image}) {
-    this.amountPaid = amountPaid
+  constructor({name, image, price, sellerID, description, condition}) {
+    this.name = name;
+    this.image = image;
+    this.price = price;
     this.sellerID = sellerID;
-    this.listingID = listingID;
-    this.buyerID = buyerID;
-    this.image = image
+    this.description = description;
+    this.condition = condition;
   }
 
   static async list() {
@@ -49,7 +50,7 @@ class Purchases {
     }
   }
 
-  static async logPurchase(purchase) {
+  static async create(username, password) {
     try {
       const passwordHash = await authUtils.hashPassword(password);
 
@@ -90,4 +91,4 @@ class Purchases {
   );
 }
 
-module.exports = Purchases;
+module.exports = Listing;
