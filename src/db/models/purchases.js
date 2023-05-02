@@ -8,9 +8,9 @@ class Purchases {
   // to provide the controller with instances that
   // have access to the instance methods isValidPassword
   // and update.
-  constructor({ seller, buyer, amountPaid, datePaid }) {
-    this.seller = seller;
-    this.buyer = buyer;
+  constructor({ sellerID, buyerID, amountPaid, datePaid }) {
+    this.sellerID = sellerID;
+    this.buyerID = buyerID;
     this.amountPaid = amountPaid
     this.datePaid = datePaid;
   }
@@ -48,7 +48,7 @@ class Purchases {
     }
   }
 
-  static async create(username, password) {
+  static async logPurchase(purchase) {
     try {
       const passwordHash = await authUtils.hashPassword(password);
 
