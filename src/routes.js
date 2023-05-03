@@ -1,9 +1,10 @@
 const express = require('express');
 // const fileUpload = require('express-fileupload');
 const userController = require('./controllers/user');
-// const listingController = require('./controllers/listing')
-// const bidController = require('./controllers/bid')
-// const purchaseController = require('./controllers/purchase')
+const listingController = require('./controllers/listing')
+const bidController = require('./controllers/bid')
+const purchaseController = require('./controllers/purchase')
+
 const addModels = require('./middleware/add-models');
 const checkAuthentication = require('./middleware/check-authentication');
 
@@ -22,6 +23,7 @@ Router.get('/cookieCounter', (req, res) => {
 Router.post('/users', userController.create);
 Router.post('/users/login', userController.login);
 
+
 // Read
 Router.get('/users', userController.list);
 Router.get('/users/:id', userController.show);
@@ -30,6 +32,11 @@ Router.get('/me', userController.showMe);
 Router.get('/logged-in-secret', checkAuthentication, (req, res) => {
   res.send({ msg: 'The secret is: there is no secret.' });
 });
+
+ Router.get('/marketplace', listingController.listNotUserListings)
+ Router.get('/home', listingController.listNotUserListings)
+ 
+ Router.get('/home', purchaseController.list)
 
 // Update
 Router.patch('/users/:id', checkAuthentication, userController.update);

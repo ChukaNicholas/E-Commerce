@@ -43,9 +43,9 @@ class Listing {
 
   static async find(id) {
     try {
-      const query = 'SELECT * FROM users WHERE id = ?';
-      const { rows: [user] } = await knex.raw(query, [id]);
-      return user ? new User(user) : null;
+      const query = 'SELECT * FROM listings WHERE id = ?';
+      const { rows: [listing] } = await knex.raw(query, [id]);
+      return listing ? new Listing(listing) : null;
     } catch (err) {
       console.error(err);
       return null;
