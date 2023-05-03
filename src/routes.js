@@ -1,6 +1,9 @@
 const express = require('express');
 // const fileUpload = require('express-fileupload');
 const userController = require('./controllers/user');
+// const listingController = require('./controllers/listing')
+// const bidController = require('./controllers/bid')
+// const purchaseController = require('./controllers/purchase')
 const addModels = require('./middleware/add-models');
 const checkAuthentication = require('./middleware/check-authentication');
 

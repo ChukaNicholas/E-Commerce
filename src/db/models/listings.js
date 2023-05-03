@@ -17,11 +17,24 @@ class Listing {
     this.condition = condition;
   }
 
-  static async list() {
+  static async listNotUserListings(userID) {
     try {
-      const query = 'SELECT * FROM users';
-      const { rows } = await knex.raw(query);
-      return rows.map((user) => new User(user));
+      const query = `SELECT * FROM listings  WHERE seller_id != ?
+      RETURNING * `;
+      const { rows } = await knex.raw(query, [userID]);
+      return rows.map((listing) => new Listing(listing));
+    } catch (err) {
+      console.error(err);
+      return null;
+    }
+  }
+
+  static async listUserListings(userID) {
+    try {
+      const query = `SELECT * FROM listings  WHERE seller_id = ?
+      RETURNING * `;
+      const { rows } = await knex.raw(query, [userID]);
+      return rows.map((listing) => new Listing(listing));
     } catch (err) {
       console.error(err);
       return null;
@@ -85,18 +98,18 @@ class Listing {
     }
   }
 
-  update = async (username) => { // dynamic queries are easier if you add more properties
-    try {
-      const [updatedUser] = await knex('users')
-        .where({ id: this.id })
-        .update({ username })
-        .returning('*');
-      return updatedUser ? new User(updatedUser) : null;
-    } catch (err) {
-      console.error(err);
-      return null;
-    }
-  };
+  // update = async (username) => { // dynamic queries are easier if you add more properties
+  //   try {
+  //     const [updatedUser] = await knex('users')
+  //       .where({ id: this.id })
+  //       .update({ username })
+  //       .returning('*');
+  //     return updatedUser ? new User(updatedUser) : null;
+  //   } catch (err) {
+  //     console.error(err);
+  //     return null;
+  //   }
+  // };
 
   isValidPassword = async (password) => (
     authUtils.isValidPassword(password, this.#passwordHash)

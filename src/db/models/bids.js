@@ -67,7 +67,9 @@ class Bid {
 
   static async delete(listingID) {
     try {
-      const query = `DELETE FROM bids WHERE listing_id = ?`
+      const query = `DELETE FROM bids WHERE listing_id = ?
+      REUTRNING *
+      `
       const {rows: [bid]} = await knex.raw(query, [listingID])
       return Bid(bid)
     } catch (err) {
