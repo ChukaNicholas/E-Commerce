@@ -1,22 +1,25 @@
- const knex = require('../knex');
+const knex = require('../knex');
 const authUtils = require('../../utils/auth-utils');
 
-class Listings {
+class Listing {
   #passwordHash = null;
 
   // This constructor is used ONLY by the model
   // to provide the controller with instances that
   // have access to the instance methods isValidPassword
   // and update.
-  constructor({ id, username, password_hash }) {
-    this.id = id;
-    this.username = username;
-    this.#passwordHash = password_hash;
+  constructor({name, image, price, sellerID, description, condition}) {
+    this.name = name;
+    this.image = image;
+    this.price = price;
+    this.sellerID = sellerID;
+    this.description = description;
+    this.condition = condition;
   }
 
   static async list() {
     try {
-      const query = 'SELECT * FROM listings';
+      const query = 'SELECT * FROM users';
       const { rows } = await knex.raw(query);
       return rows.map((user) => new User(user));
     } catch (err) {
@@ -47,17 +50,29 @@ class Listings {
     }
   }
 
-  static async create(username, password) {
+  static async create(name, image, price, sellerID, description, condition) {
     try {
-      const passwordHash = await authUtils.hashPassword(password);
+      // const passwordHash = await authUtils.hashPassword(password);
 
-      const query = `INSERT INTO users (username, password_hash)
-        VALUES (?, ?) RETURNING *`;
-      const { rows: [user] } = await knex.raw(query, [username, passwordHash]);
-      return new User(user);
+      const query = `INSERT INTO listings (name, image, price, seller_id, description, condition)
+        VALUES (?, ?, ?, ?, ?, ?) RETURNING *;`;
+      const { rows: [listing] } = await knex.raw(query, [name, image, price, sellerID, description, condition]);
+      return new Listing(listing);
     } catch (err) {
       console.error(err);
       return null;
+    }
+  }
+
+  static async delete(listingID) {
+    try {
+      const query = `DELETE FROM listings WHERE listing_id = ?
+      RETURNING *;`
+    const {rows: [listing]} = await knex.raw(query, [listingID])
+    return new Listing(listing);
+    } catch (err) {
+      console.error(err)
+      return null
     }
   }
 
@@ -88,4 +103,4 @@ class Listings {
   );
 }
 
-module.exports = Listings;
+module.exports = Listing;

@@ -1,92 +1,105 @@
 const knex = require('../knex');
 const authUtils = require('../../utils/auth-utils');
 
-class Purchases {
+class Purchase {
   #passwordHash = null;
 
   // This constructor is used ONLY by the model
   // to provide the controller with instances that
   // have access to the instance methods isValidPassword
   // and update.
-  constructor({ seller, buyer, amountPaid, datePaid }) {
-    this.seller = seller;
-    this.buyer = buyer;
+  constructor({ amountPaid, sellerID, listingID, buyerID, image}) {
     this.amountPaid = amountPaid
-    this.datePaid = datePaid;
+    this.sellerID = sellerID;
+    this.listingID = listingID;
+    this.buyerID = buyerID;
+    this.image = image
   }
 
-  static async list() {
+  static async list(userID) {
     try {
-      const query = 'SELECT * FROM users';
-      const { rows } = await knex.raw(query);
-      return rows.map((user) => new User(user));
+      const query = 'SELECT * FROM purchases WHERE buyer_id = ?;'; //
+      const { rows } = await knex.raw(query, [userID]);
+      return rows.map((purchase) => new Purchase(purchase));
     } catch (err) {
       console.error(err);
       return null;
     }
   }
 
-  static async find(id) {
+  // static async find(id) {
+  //   try {
+  //     const query = 'SELECT * FROM users WHERE id = ?';
+  //     const { rows: [user] } = await knex.raw(query, [id]);
+  //     return user ? new User(user) : null;
+  //   } catch (err) {
+  //     console.error(err);
+  //     return null;
+  //   }
+  // }
+
+  // static async findByUsername(username) {
+  //   try {
+  //     const query = 'SELECT * FROM users WHERE username = ?';
+  //     const { rows: [user] } = await knex.raw(query, [username]);
+  //     return user ? new User(user) : null;
+  //   } catch (err) {
+  //     console.error(err);
+  //     return null;
+  //   }
+  // }
+
+  static async create(amountPaid, sellerID, listingID, buyerID, image) {
     try {
-      const query = 'SELECT * FROM users WHERE id = ?';
-      const { rows: [user] } = await knex.raw(query, [id]);
-      return user ? new User(user) : null;
+      // const passwordHash = await authUtils.hashPassword(password);
+
+      const query = `INSERT INTO purchases (price, seller_id, listing_id, buyer_id, image)
+        VALUES (?, ?, ?, ?, ?) RETURNING *`;
+      const { rows: [purchase] } = await knex.raw(query, [amountPaid, sellerID, listingID, buyerID, image]); // some array of variables
+      return new Purchase(purchase);
     } catch (err) {
       console.error(err);
       return null;
     }
   }
 
-  static async findByUsername(username) {
+  static async delete(purchaseID) {
     try {
-      const query = 'SELECT * FROM users WHERE username = ?';
-      const { rows: [user] } = await knex.raw(query, [username]);
-      return user ? new User(user) : null;
+      const query = `DELETE FROM purchases WHERE purchase_id = ?
+      RETURNING *`
+      const { rows: [purchase] } = await knex.raw(query, [purchaseID]); // some array of variables
+      return new Purchase(purchase);
     } catch (err) {
-      console.error(err);
-      return null;
-    }
-  }
-
-  static async create(username, password) {
-    try {
-      const passwordHash = await authUtils.hashPassword(password);
-
-      const query = `INSERT INTO users (username, password_hash)
-        VALUES (?, ?) RETURNING *`;
-      const { rows: [user] } = await knex.raw(query, [username, passwordHash]);
-      return new User(user);
-    } catch (err) {
-      console.error(err);
-      return null;
+      console.error(err)
+      return null
     }
   }
 
   static async deleteAll() {
     try {
-      return knex.raw('TRUNCATE users;');
+      return knex.raw('TRUNCATE purchases;');
     } catch (err) {
       console.error(err);
       return null;
     }
   }
 
-  update = async (username) => { // dynamic queries are easier if you add more properties
-    try {
-      const [updatedUser] = await knex('users')
-        .where({ id: this.id })
-        .update({ username })
-        .returning('*');
-      return updatedUser ? new User(updatedUser) : null;
-    } catch (err) {
-      console.error(err);
-      return null;
-    }
-  };
+  // update = async (username) => { // dynamic queries are easier if you add more properties
+  //   try {
+  //     const [updatedUser] = await knex('users')
+  //       .where({ id: this.id })
+  //       .update({ username })
+  //       .returning('*');
+  //     return updatedUser ? new User(updatedUser) : null;
+  //   } catch (err) {
+  //     console.error(err);
+  //     return null;
+  //   }
+  // };
 
-  isValidPassword = async (password) => (
-    authUtils.isValidPassword(password, this.#passwordHash)
-  );
+  // isValidPassword = async (password) => (
+  //   authUtils.isValidPassword(password, this.#passwordHash)
+  // );
 }
 
-module.exports = Purchases;
+module.exports = Purchase;

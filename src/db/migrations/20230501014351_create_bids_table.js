@@ -4,10 +4,11 @@
  */
 exports.up = (knex) => knex.schema.createTable('bids', (table) => {
     table.increments();
-    table.integer('amount').notNullable();
-    table.integer('user_id').notNullable();
+    table.decimal('amount', null).notNullable();
+    table.integer('seller_id').notNullable();
     table.integer('listing_id').notNullable();
-    table.dateTime('created_at', true);
+    table.integer('buyer_id').notNullable();
+    table.dateTime('last_updated', { precision: 6 }).defaultTo(knex.fn.now(6));
 });
 
 /**
