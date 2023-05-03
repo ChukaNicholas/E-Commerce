@@ -1,7 +1,7 @@
 const knex = require('../knex');
 const authUtils = require('../../utils/auth-utils');
 
-class Purchases {
+class Purchase {
   #passwordHash = null;
 
   // This constructor is used ONLY by the model
@@ -20,7 +20,7 @@ class Purchases {
     try {
       const query = 'SELECT * FROM purchases WHERE buyer_id = ?;'; //
       const { rows } = await knex.raw(query, [userID]);
-      return rows.map((purchase) => new User(purchase));
+      return rows.map((purchase) => new Purchase(purchase));
     } catch (err) {
       console.error(err);
       return null;
@@ -49,17 +49,29 @@ class Purchases {
   //   }
   // }
 
-  static async logPurchase(purchase) {
+  static async create(amountPaid, sellerID, listingID, buyerID, image) {
     try {
       // const passwordHash = await authUtils.hashPassword(password);
 
       const query = `INSERT INTO purchases (price, seller_id, listing_id, buyer_id, image)
         VALUES (?, ?, ?, ?, ?) RETURNING *`;
-      const { rows: [purchase] } = await knex.raw(query, []); // some array of variables
+      const { rows: [purchase] } = await knex.raw(query, [amountPaid, sellerID, listingID, buyerID, image]); // some array of variables
       return new Purchase(purchase);
     } catch (err) {
       console.error(err);
       return null;
+    }
+  }
+
+  static async delete(purchaseID) {
+    try {
+      const query = `DELETE FROM purchases WHERE purchase_id = ?
+      RETURNING *`
+      const { rows: [purchase] } = await knex.raw(query, [purchaseID]); // some array of variables
+      return new Purchase(purchase);
+    } catch (err) {
+      console.error(err)
+      return null
     }
   }
 
@@ -90,4 +102,4 @@ class Purchases {
   // );
 }
 
-module.exports = Purchases;
+module.exports = Purchase;

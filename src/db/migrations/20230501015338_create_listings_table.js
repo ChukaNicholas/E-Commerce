@@ -10,7 +10,7 @@ exports.up = (knex) => knex.schema.createTable('listings', (table) => {
     table.integer('seller_id').notNullable();
     table.text('description').notNullable();
     table.string('condition').notNullable();
-    table.boolean('up_for_aution')
+    table.boolean('up_for_auction')
 });
 
 /**
