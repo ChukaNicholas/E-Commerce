@@ -18,8 +18,12 @@ class Purchase {
 
   static async list(userID) {
     try {
-      const query = 'SELECT * FROM purchases WHERE buyer_id = ?;'; //
+      const query = `
+      SELECT * 
+      FROM purchases 
+      WHERE buyer_id = ?;`; 
       const { rows } = await knex.raw(query, [userID]);
+      console.log(rows)
       return rows.map((purchase) => new Purchase(purchase));
     } catch (err) {
       console.error(err);
@@ -52,10 +56,16 @@ class Purchase {
   static async create(amountPaid, sellerID, listingID, buyerID, image) {
     try {
       // const passwordHash = await authUtils.hashPassword(password);
-
-      const query = `INSERT INTO purchases (price, seller_id, listing_id, buyer_id, image)
-        VALUES (?, ?, ?, ?, ?) RETURNING *`;
-      const { rows: [purchase] } = await knex.raw(query, [amountPaid, sellerID, listingID, buyerID, image]); // some array of variables
+      const query1 = `
+        INSERT INTO purchases (price, seller_id, listing_id, buyer_id, image)
+        VALUES (?, ?, ?, ?, ?) 
+        RETURNING *;`
+      const { rows: [purchase] } = await knex.raw(query1, [amountPaid, sellerID, listingID, buyerID, image]);
+      const query2 = `
+        DELETE FROM listings  
+        WHERE id = ?
+        RETURNING *;`
+      const { rows: [listing] } = await knex.raw(query2, [listingID]);
       return new Purchase(purchase);
     } catch (err) {
       console.error(err);
@@ -65,8 +75,10 @@ class Purchase {
 
   static async delete(purchaseID) {
     try {
-      const query = `DELETE FROM purchases WHERE purchase_id = ?
-      RETURNING *`
+      const query = `
+      DELETE FROM purchases 
+      WHERE purchase_id = ?
+      RETURNING *;`
       const { rows: [purchase] } = await knex.raw(query, [purchaseID]); // some array of variables
       return new Purchase(purchase);
     } catch (err) {

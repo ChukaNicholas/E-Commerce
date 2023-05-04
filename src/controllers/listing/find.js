@@ -1,15 +1,12 @@
 const findListing = async (req, res) => {
-    console.log(req)
-    // const {
-    //   session,
-    //   db: { User },
-    //   body: { username, password },
-    // } = req;
-  
-    // const user = await User.create(username, password);
-    // session.userId = user.id;
-  
-    // res.send(user);
+    const { 
+      params : {id},
+      db: {Listing}
+    } = req
+    const toNum = Number(id)
+    const isListing = await Listing.find(toNum)
+    if(!isListing) return res.sendStatus(404)
+    res.sendStatus(202)
   };
   
   module.exports = findListing;

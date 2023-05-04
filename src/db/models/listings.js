@@ -71,14 +71,15 @@ class Listing {
         image,
         price,
         description,
-        condition },
+        condition,
+        upForAuction },
         id : sellerID,
       } = listingInfo
       const query = `
-        INSERT INTO listings (name, image, price, seller_id, description, condition)
-        VALUES (?, ?, ?, ?, ?, ?) 
+        INSERT INTO listings (name, image, price, seller_id, description, condition, up_for_auction)
+        VALUES (?, ?, ?, ?, ?, ?, ?) 
         RETURNING *;`;
-      const { rows: [listing] } = await knex.raw(query, [name, image, price, sellerID ,description, condition]);
+      const { rows: [listing] } = await knex.raw(query, [name, image, price, sellerID ,description, condition, upForAuction]);
       return new Listing(listing);
     } catch (err) {
       console.error(err);

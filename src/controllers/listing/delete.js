@@ -5,9 +5,9 @@ const deleteListing = async (req, res) => {
     } = req
     const toNum = Number(id)
     const listing = await Listing.delete(toNum)
-    if(!listing) res.sendStatus(404)
+    if(!listing) return res.sendStatus(404)
 
-    res.send(202)
+    res.sendStatus(202)
   };
   
   module.exports = deleteListing;

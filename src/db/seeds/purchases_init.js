@@ -13,6 +13,12 @@ exports.seed = async function(knex) {
     VALUES (10.99, 3, 2, 4, 'https://www.google.com/imgres?imgurl=https%3A%2F%2Fmedia.vogue.fr%2Fphotos%2F5d40515bc93b83000833392f%2F16%3A9%2Fw_1280%2Cc_limit%2F020-Sneakers-Encyclopaedia-Vogueint-Jul24-Getty-Images.jpg&tbnid=fES4Eo5ExBOPAM&vet=12ahUKEwia_6Dq9Nb-AhWbEGIAHRxLCq0QMygTegUIARCOBA..i&imgrefurl=https%3A%2F%2Fwww.vogue.fr%2Ffashion%2Farticle%2Fvogues-fashion-encyclopedia-the-history-of-sneakers&docid=h4sD0Ppff4MAhM&w=1280&h=720&q=sneakers&ved=2ahUKEwia_6Dq9Nb-AhWbEGIAHRxLCq0QMygTegUIARCOBA');
 
     INSERT INTO purchases (price, seller_id, listing_id, buyer_id, image)    
-    VALUES (7.99, 2, 3, 3, 'https://www.google.com/imgres?imgurl=https%3A%2F%2Fgray-kfyr-prod.cdn.arcpublishing.com%2Fresizer%2FPZG_hZPxy0K4Kje0rreuTKmFeh4%3D%2F1200x675%2Fsmart%2Ffilters%3Aquality(85)%2Fcloudfront-us-east-1.images.arcpublishing.com%2Fgray%2FW5PTHGIILJFNZMYHMCMJGSXOJM.png&tbnid=tK4XPS937kdjoM&vet=12ahUKEwjkkLGH9db-AhVKJGIAHWmPCDsQMygLegUIARDeAg..i&imgrefurl=https%3A%2F%2Fwww.kfyrtv.com%2F2022%2F01%2F28%2F7-year-old-killed-by-bulldozer-his-father-was-driving%2F&docid=zX8pP68kemgwDM&w=1200&h=675&q=bulldozer&ved=2ahUKEwjkkLGH9db-AhVKJGIAHWmPCDsQMygLegUIARDeAg');
+    VALUES (7.99, 2, 4, 3, 'https://www.google.com/imgres?imgurl=https%3A%2F%2Fgray-kfyr-prod.cdn.arcpublishing.com%2Fresizer%2FPZG_hZPxy0K4Kje0rreuTKmFeh4%3D%2F1200x675%2Fsmart%2Ffilters%3Aquality(85)%2Fcloudfront-us-east-1.images.arcpublishing.com%2Fgray%2FW5PTHGIILJFNZMYHMCMJGSXOJM.png&tbnid=tK4XPS937kdjoM&vet=12ahUKEwjkkLGH9db-AhVKJGIAHWmPCDsQMygLegUIARDeAg..i&imgrefurl=https%3A%2F%2Fwww.kfyrtv.com%2F2022%2F01%2F28%2F7-year-old-killed-by-bulldozer-his-father-was-driving%2F&docid=zX8pP68kemgwDM&w=1200&h=675&q=bulldozer&ved=2ahUKEwjkkLGH9db-AhVKJGIAHWmPCDsQMygLegUIARDeAg');
+
+    INSERT INTO purchases (price, seller_id, listing_id, buyer_id, image)    
+    VALUES (50.39, 2, 4, 4, 'imge_url');
+
+    INSERT INTO purchases (price, seller_id, listing_id, buyer_id, image)    
+    VALUES (13.99, 2, 5, 4, 'imge_url');
   `)
 };

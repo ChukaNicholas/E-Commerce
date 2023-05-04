@@ -8,7 +8,7 @@ exports.up = (knex) => knex.schema.createTable('bids', (table) => {
     table.integer('seller_id').notNullable();
     table.integer('listing_id').notNullable();
     table.integer('buyer_id').notNullable();
-    table.dateTime('last_updated', { precision: 6 }).defaultTo(knex.fn.now(6));
+    table.dateTime('created_at', { precision: 6 }).defaultTo(knex.fn.now(6));
 });
 
 /**

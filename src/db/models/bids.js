@@ -52,12 +52,18 @@ class Bid {
     try {
       // const passwordHash = await authUtils.hashPassword(password);
 
-      const query = `INSERT INTO bids (amount, seller_id, listing_id, buyer_id)
-        VALUES (?, ?, ?, ?) RETURNING *
-        
-        UPDATE listings SET up_for_auction = TRUE WHERE listing_id = ?
+      const query1 = `
+        INSERT INTO bids (amount, seller_id, listing_id, buyer_id)
+        VALUES (?, ?, ?, ?) 
+        RETURNING *;
         `;
-      const { rows: [bid] } = await knex.raw(query, [amount, sellerID, listingID, buyerID, listingID] ); // some array of variables
+      const { rows: [bid] } = await knex.raw(query1, [amount, sellerID, listingID, buyerID] ); // some array of variables
+      const query2 = `
+      UPDATE listings
+      SET price = ?, last_updated = NOW()
+      WHERE id = ?;
+      `;
+      const { rows: [listing] } = await knex.raw(query2, [amount, listingID] ); // some array of variables
       return new Bid(bid);
     } catch (err) {
       console.error(err);

@@ -23,6 +23,8 @@ Router.get('/cookieCounter', (req, res,) => {
 Router.post('/users', userController.create);
 Router.post('/users/login', userController.login);
 Router.post('/create-listing/:id', listingController.create);
+Router.post('/create-bid/:listing_id', bidController.create)
+Router.post('/create-purchase/:id', purchaseController.create)
 
 
 // Read
@@ -35,8 +37,8 @@ Router.get('/logged-in-secret', checkAuthentication, (req, res) => {
 });
 
  Router.get('/marketplace/:id', listingController.listNotUserListings)
- Router.get('/home/:id', listingController.listUserListings)
-
+//  Router.get('/home/:id', listingController.listUserListings)
+ Router.get('/find-listing/:id', listingController.find)
  Router.get('/home/:id', purchaseController.list)
 
 // Update

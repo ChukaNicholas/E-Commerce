@@ -1,15 +1,20 @@
-const updatePurchase = async (req, res) => {
-    console.log(req)
-    // const {
-    //   session,
-    //   db: { User },
-    //   body: { username, password },
-    // } = req;
-  
-    // const user = await User.create(username, password);
-    // session.userId = user.id;
-  
-    // res.send(user);
+const createPurchase = async (req, res) => {
+    const {
+      params: { id },
+      db: { Purchase, Listing },
+      body: { listing_id},
+    } = req;
+    const buyerID = Number(id)
+    const listingID = Number(listing_id)
+    const listing = await Listing.find(listingID);
+    if(!listing) return res.sendStatus(404)
+    const {
+      price,
+      image,
+      sellerID
+    } = listing
+    const purchase = await Purchase.create(price, sellerID, listingID, buyerID, image)
+    res.send(purchase)
   };
   
-  module.exports = updatePurchase;
+  module.exports = createPurchase;
