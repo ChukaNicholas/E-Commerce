@@ -8,21 +8,26 @@ class Listing {
   // to provide the controller with instances that
   // have access to the instance methods isValidPassword
   // and update.
-  constructor({name, image, price, sellerID, description, condition}) {
+  constructor({name, image, price, seller_id, description, condition}) {
     this.name = name;
     this.image = image;
     this.price = price;
-    this.sellerID = sellerID;
+    this.sellerID = seller_id;
     this.description = description;
     this.condition = condition;
   }
 
   static async listNotUserListings(userID) {
     try {
-      const query = `SELECT * FROM listings  WHERE seller_id != ?
-      RETURNING * `;
+      const query = `
+      SELECT * 
+      FROM listings  
+      WHERE seller_id != ? `;
       const { rows } = await knex.raw(query, [userID]);
-      return rows.map((listing) => new Listing(listing));
+      return rows.map((listing) => {
+        // console.log(listing)
+        return new Listing(listing)
+      });
     } catch (err) {
       console.error(err);
       return null;
