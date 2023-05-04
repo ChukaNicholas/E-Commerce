@@ -88,10 +88,12 @@ class Listing {
 
   static async delete(listingID) {
     try {
-      const query = `DELETE FROM listings WHERE listing_id = ?
+      const query = `
+      DELETE FROM listings 
+      WHERE id = ?
       RETURNING *;`
     const {rows: [listing]} = await knex.raw(query, [listingID])
-    return new Listing(listing);
+    return listing ? new Listing(listing) : null;
     } catch (err) {
       console.error(err)
       return null
