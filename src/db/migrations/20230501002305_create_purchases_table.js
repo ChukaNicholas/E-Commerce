@@ -4,7 +4,7 @@
  */
 exports.up = (knex) => knex.schema.createTable('purchases', (table) => {
     table.increments();
-    table.integer('price').notNullable();
+    table.decimal('price', null).notNullable();
     table.integer('seller_id').notNullable();
     table.integer('listing_id').notNullable();
     table.integer('buyer_id').notNullable();

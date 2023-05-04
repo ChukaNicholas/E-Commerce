@@ -24,10 +24,7 @@ class Listing {
       FROM listings  
       WHERE seller_id != ? `;
       const { rows } = await knex.raw(query, [userID]);
-      return rows.map((listing) => {
-        // console.log(listing)
-        return new Listing(listing)
-      });
+      return rows.map((listing) => new Listing(listing));
     } catch (err) {
       console.error(err);
       return null;
@@ -36,8 +33,7 @@ class Listing {
 
   static async listUserListings(userID) {
     try {
-      const query = `SELECT * FROM listings  WHERE seller_id = ?
-      RETURNING * `;
+      const query = `SELECT * FROM listings  WHERE seller_id = ?`;
       const { rows } = await knex.raw(query, [userID]);
       return rows.map((listing) => new Listing(listing));
     } catch (err) {
@@ -68,13 +64,21 @@ class Listing {
     }
   }
 
-  static async create(name, image, price, sellerID, description, condition) {
+  static async create(listingInfo) {
     try {
-      // const passwordHash = await authUtils.hashPassword(password);
-
-      const query = `INSERT INTO listings (name, image, price, seller_id, description, condition)
-        VALUES (?, ?, ?, ?, ?, ?) RETURNING *;`;
-      const { rows: [listing] } = await knex.raw(query, [name, image, price, sellerID, description, condition]);
+      const {
+        body: { name,
+        image,
+        price,
+        description,
+        condition },
+        id : sellerID,
+      } = listingInfo
+      const query = `
+        INSERT INTO listings (name, image, price, seller_id, description, condition)
+        VALUES (?, ?, ?, ?, ?, ?) 
+        RETURNING *;`;
+      const { rows: [listing] } = await knex.raw(query, [name, image, price, sellerID ,description, condition]);
       return new Listing(listing);
     } catch (err) {
       console.error(err);

@@ -31,5 +31,33 @@ DELETE http://localhost:3000/api/users/logout
 #######################################
 GET http://localhost:3000/api/logged-in-secret
 
+/////////////////
+///Listing API///
+/////////////////
+
 #######################################
 GET http://localhost:3000/api/marketplace/1
+
+#######################################
+GET http://localhost:3000/api/home/2
+
+#######################################
+POST http://localhost:3000/api/create-listing/3
+Content-Type: application/json
+
+{
+  "name": "Chair",
+  "image": "https://www.google.com/imgres?imgurl=https%3A%2F%2Fcontent.la-z-boy.com%2FImages%2Fproduct%2Fcategory%2Fwhite%2Flarge%2F235401.jpg&tbnid=rusokQZMry4uGM&vet=12ahUKEwiOzLS27dv-AhWTEGIAHc4FB-sQMygCegUIARDBAw..i&imgrefurl=https%3A%2F%2Fwww.la-z-boy.com%2Fp%2Fchairs%2Fallegra-chair%2F_%2FR-235401&docid=na2F3pIlRtrNjM&w=1000&h=1000&q=chair&ved=2ahUKEwiOzLS27dv-AhWTEGIAHc4FB-sQMygCegUIARDBAw",
+  "price": 67.45,
+  "description": "a cool chair",
+  "condition": "great"
+}
+
+#######################################
+DELETE http://localhost:3000/api/delete-listing/3
+
+/////////////////
+///Purchase API///
+/////////////////
+#######################################
+GET http://localhost:3000/api/home/2

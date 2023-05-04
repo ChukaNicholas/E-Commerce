@@ -1,15 +1,14 @@
 const listUserListing = async (req, res) => {
-    console.log(req)
-    // const {
-    //   session,
-    //   db: { User },
-    //   body: { username, password },
-    // } = req;
-  
-    // const user = await User.create(username, password);
-    // session.userId = user.id;
-  
-    // res.send(user);
+  const {
+    params:{id},
+   db:{Listing},
+  } = req
+
+  const listings = await Listing.listUserListings(Number(id))
+  console.log(listings)
+  if (!listings) return res.sendStatus(404);
+
+  res.send(listings);
   };
   
   module.exports = listUserListing;

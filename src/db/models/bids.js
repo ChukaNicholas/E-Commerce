@@ -8,11 +8,11 @@ class Bid {
   // to provide the controller with instances that
   // have access to the instance methods isValidPassword
   // and update.
-  constructor({ amount, sellerID, listingID, buyerID}) {
+  constructor({ amount, seller_id, listing_id, buyer_id}) {
     this.amount = amount;
-    this.sellerID = sellerID;
-    this.listingID = listingID;
-    this.buyerID = buyerID;
+    this.sellerID = seller_id;
+    this.listingID = listing_id;
+    this.buyerID = buyer_id;
   }
 
   static async list() {

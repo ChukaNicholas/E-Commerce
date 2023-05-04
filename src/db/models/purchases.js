@@ -8,11 +8,11 @@ class Purchase {
   // to provide the controller with instances that
   // have access to the instance methods isValidPassword
   // and update.
-  constructor({ amountPaid, sellerID, listingID, buyerID, image}) {
-    this.amountPaid = amountPaid
-    this.sellerID = sellerID;
-    this.listingID = listingID;
-    this.buyerID = buyerID;
+  constructor({ price, seller_id, listing_id, buyer_id, image}) {
+    this.amountPaid = price
+    this.sellerID = seller_id;
+    this.listingID = listing_id;
+    this.buyerID = buyer_id;
     this.image = image
   }
 

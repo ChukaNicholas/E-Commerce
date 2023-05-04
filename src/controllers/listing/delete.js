@@ -1,15 +1,11 @@
 const deleteListing = async (req, res) => {
-    console.log(req)
-    // const {
-    //   session,
-    //   db: { User },
-    //   body: { username, password },
-    // } = req;
-  
-    // const user = await User.create(username, password);
-    // session.userId = user.id;
-  
-    // res.send(user);
+    const {
+      params : {id},
+      db: {Listing},
+    } = req
+    const toNum = Number(id)
+    const listing = await Listing.delete(toNum)
+    console.log(listing)
   };
   
   module.exports = deleteListing;

@@ -11,7 +11,7 @@ const checkAuthentication = require('./middleware/check-authentication');
 const Router = express.Router();
 Router.use(addModels);
 
-Router.get('/cookieCounter', (req, res) => {
+Router.get('/cookieCounter', (req, res,) => {
   const { session } = req;
   console.log(session);
   session.viewCount = (session.viewCount || 0) + 1;
@@ -22,6 +22,7 @@ Router.get('/cookieCounter', (req, res) => {
 // Create
 Router.post('/users', userController.create);
 Router.post('/users/login', userController.login);
+Router.post('/create-listing/:id', listingController.create);
 
 
 // Read
@@ -34,14 +35,15 @@ Router.get('/logged-in-secret', checkAuthentication, (req, res) => {
 });
 
  Router.get('/marketplace/:id', listingController.listNotUserListings)
- Router.get('/home/:id', listingController.listNotUserListings)
+ Router.get('/home/:id', listingController.listUserListings)
 
- Router.get('/home', purchaseController.list)
+ Router.get('/home/:id', purchaseController.list)
 
 // Update
 Router.patch('/users/:id', checkAuthentication, userController.update);
 
 // Delete
 Router.delete('/users/logout', userController.logout);
+Router.delete('/delete-listing/:id', listingController.destroy);
 
 module.exports = Router;

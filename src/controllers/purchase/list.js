@@ -1,15 +1,14 @@
-const listPurchase = async (req, res) => {
-    console.log(req)
-    // const {
-    //   session,
-    //   db: { User },
-    //   body: { username, password },
-    // } = req;
+const listPurchases = async (req, res) => {
+    
+    const {
+      db: { Purchase },
+      params: { id },
+    } = req;
   
-    // const user = await User.create(username, password);
-    // session.userId = user.id;
+    const purchases = await Purchase.list(Number(id));
+    if(!purchases) return res.sendStatus(404);
   
-    // res.send(user);
+    res.send(purchases);
   };
   
-  module.exports = listPurchase;
+  module.exports = listPurchases;
