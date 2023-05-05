@@ -45,7 +45,7 @@ GET http://localhost:3000/api/user-listing
 GET http://localhost:3000/api/find-listing/1
 
 #######################################
-POST http://localhost:3000/api/create-listing/3
+POST http://localhost:3000/api/create-listing
 Content-Type: application/json
 
 {
@@ -69,8 +69,7 @@ POST http://localhost:3000/api/create-bid/2
 Content-Type: application/json
 
 {
-  "amount": 70.00,
-  "buyer_id" : 5
+  "amount": 70.00
 }
 
 /////////////////
@@ -83,5 +82,3 @@ GET http://localhost:3000/api/show-user-purchases
 #######################################
 POST http://localhost:3000/api/create-purchase/4
 Content-Type: application/json
-
-{ "listing_id": 4 }

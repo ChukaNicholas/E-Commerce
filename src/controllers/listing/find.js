@@ -1,12 +1,12 @@
 const findListing = async (req, res) => {
     const { 
-      params : {id},
+      params : {listing_id},
       db: {Listing}
     } = req
-    const toNum = Number(id)
-    const isListing = await Listing.find(toNum)
-    if(!isListing) return res.sendStatus(404)
-    res.sendStatus(202)
+    const toNum = Number(listing_id)
+    const listing = await Listing.find(toNum)
+    if(!listing) return res.sendStatus(404)
+    res.send(listing)
   };
   
   module.exports = findListing;

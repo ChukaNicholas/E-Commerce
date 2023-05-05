@@ -8,18 +8,21 @@
   <script type="module" src="./scripts/login.js"></script>
   <title>Log in</title>
 </head>
-<body>
+<body id ="tester">
   <nav id="main-nav"></nav>
   <main>
-    <h1 id="log-in">Log In</h1>
-    <form id="create-form" aria-describedby="log-in">
-      <label for="username">Username</label>
-      <input type="text" name="username" id="username" autocomplete="username">
-      <label for="password">Password</label>
-      <input type="password" name="password" id="password" autocomplete="password">
-
-      <button type="submit">Log in!</button>
-    </form>
+    <!-- <h1 id="log-in">Log In</h1> -->
+    <div class = "loginbox">
+      <h1 id = "loh1">Login Here</h1>
+      <form id="create-form" aria-describedby="log-in">
+        <label for="username">Username</label>
+        <input type="text" name="username" id="username" autocomplete="username" placeholder= "Enter Username">
+        <label for="password">Password</label>
+        <input type="password" name="password" id="password" autocomplete="password" placeholder = "Enter Password">
+        <button type="submit">Log in!</button>
+        <p id = "createRef">Log into E-Commerce or <a href = "./create.html">create an account</a></p>
+      </form>
+    </div>
   </main>
 </body>
 </html>

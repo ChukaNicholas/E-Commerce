@@ -1,10 +1,10 @@
 const createPurchase = async (req, res) => {
     const {
-      params: { id },
+      session: { userId },
       db: { Purchase, Listing },
-      body: { listing_id},
+      params: { listing_id},
     } = req;
-    const buyerID = Number(id)
+    const buyerID = userId
     const listingID = Number(listing_id)
     const listing = await Listing.find(listingID);
     if(!listing) return res.sendStatus(404)

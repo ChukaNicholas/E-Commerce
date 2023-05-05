@@ -2,7 +2,7 @@
 import {
   fetchLoggedInUser,
   handleFetch,
-  setNav,
+//  setNav,
 } from './global.js';
 
 const main = async () => {
@@ -16,4 +16,4 @@ const main = async () => {
   }
 };
 
-main();
+//main();
