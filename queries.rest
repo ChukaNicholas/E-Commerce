@@ -36,10 +36,10 @@ GET http://localhost:3000/api/logged-in-secret
 /////////////////
 
 #######################################
-GET http://localhost:3000/api/marketplace/1
+GET http://localhost:3000/api/marketplace
 
 #######################################
-GET http://localhost:3000/api/home/2
+GET http://localhost:3000/api/user-listing
 
 #######################################
 GET http://localhost:3000/api/find-listing/1
@@ -78,7 +78,7 @@ Content-Type: application/json
 /////////////////
 
 #######################################
-GET http://localhost:3000/api/home/4
+GET http://localhost:3000/api/show-user-purchases
 
 #######################################
 POST http://localhost:3000/api/create-purchase/4

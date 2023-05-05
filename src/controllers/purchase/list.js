@@ -1,11 +1,11 @@
 const listPurchases = async (req, res) => {
     
     const {
+      session: { userId },
       db: { Purchase },
-      params: { id },
     } = req;
   
-    const purchases = await Purchase.list(Number(id));
+    const purchases = await Purchase.list(userId);
     if(!purchases) return res.sendStatus(404);
   
     res.send(purchases);

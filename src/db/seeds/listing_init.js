@@ -18,5 +18,11 @@ exports.seed = async function(knex) {
 
     INSERT INTO listings (name, image, price, seller_id, description, condition, up_for_auction)
     VALUES ('Computer', 'https://www.google.com/imgres?imgurl=https%3A%2F%2Fcdn.britannica.com%2F77%2F170477-050-1C747EE3%2FLaptop-computer.jpg&tbnid=_bAxRLesPf9HpM&vet=12ahUKEwiLloyp-Nb-AhV5GVkFHU59Cw0QMygBegUIARDEAg..i&imgrefurl=https%3A%2F%2Fwww.britannica.com%2Ftechnology%2Fcomputer&docid=9oCv57c03X8yLM&w=1600&h=1097&q=Computer&ved=2ahUKEwiLloyp-Nb-AhV5GVkFHU59Cw0QMygBegUIARDEAg', 24.99, 4, 'A computer with beans inside of it', 'bean', TRUE);
+
+    INSERT INTO listings (name, image, price, seller_id, description, condition, up_for_auction)
+    VALUES ('Yoyo', 'httmpw://yoyo.com', 420.69, 5, 'buy this if your lame', 'pretty good', FALSE);
+
+    INSERT INTO listings (name, image, price, seller_id, description, condition, up_for_auction)
+    VALUES ('Couch', 'httmpw://couch.com', 160.69, 5, 'not so comfy couch', 'poor', FALSE);
   `)
 };

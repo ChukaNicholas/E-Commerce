@@ -1,11 +1,11 @@
 const listUserListing = async (req, res) => {
   const {
-    params:{id},
+    session: { userId },
    db:{Listing},
   } = req
 
-  const listings = await Listing.listUserListings(Number(id))
-  console.log(listings)
+  const listings = await Listing.listUserListings(userId)
+
   if (!listings) return res.sendStatus(404);
 
   res.send(listings);

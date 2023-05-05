@@ -16,9 +16,9 @@ exports.seed = async function(knex) {
     VALUES (7.99, 2, 4, 3, 'https://www.google.com/imgres?imgurl=https%3A%2F%2Fgray-kfyr-prod.cdn.arcpublishing.com%2Fresizer%2FPZG_hZPxy0K4Kje0rreuTKmFeh4%3D%2F1200x675%2Fsmart%2Ffilters%3Aquality(85)%2Fcloudfront-us-east-1.images.arcpublishing.com%2Fgray%2FW5PTHGIILJFNZMYHMCMJGSXOJM.png&tbnid=tK4XPS937kdjoM&vet=12ahUKEwjkkLGH9db-AhVKJGIAHWmPCDsQMygLegUIARDeAg..i&imgrefurl=https%3A%2F%2Fwww.kfyrtv.com%2F2022%2F01%2F28%2F7-year-old-killed-by-bulldozer-his-father-was-driving%2F&docid=zX8pP68kemgwDM&w=1200&h=675&q=bulldozer&ved=2ahUKEwjkkLGH9db-AhVKJGIAHWmPCDsQMygLegUIARDeAg');
 
     INSERT INTO purchases (price, seller_id, listing_id, buyer_id, image)    
-    VALUES (50.39, 2, 4, 4, 'imge_url');
+    VALUES (50.39, 2, 4, 5, 'imge_url');
 
     INSERT INTO purchases (price, seller_id, listing_id, buyer_id, image)    
-    VALUES (13.99, 2, 5, 4, 'imge_url');
+    VALUES (13.99, 2, 5, 5, 'imge_url');
   `)
 };

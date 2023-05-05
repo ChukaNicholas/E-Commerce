@@ -36,10 +36,10 @@ Router.get('/logged-in-secret', checkAuthentication, (req, res) => {
   res.send({ msg: 'The secret is: there is no secret.' });
 });
 
- Router.get('/marketplace/:id', listingController.listNotUserListings)
-//  Router.get('/home/:id', listingController.listUserListings)
+ Router.get('/marketplace', listingController.listNotUserListings)
+ Router.get('/user-listing', listingController.listUserListings)
  Router.get('/find-listing/:id', listingController.find)
- Router.get('/home/:id', purchaseController.list)
+ Router.get('/show-user-purchases', purchaseController.list)
 
 // Update
 Router.patch('/users/:id', checkAuthentication, userController.update);
