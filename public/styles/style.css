@@ -1,5 +1,6 @@
 body {
   font-family: sans-serif;
+  
 }
 
 nav {
@@ -21,4 +22,51 @@ nav ul li:first-child {
 #secret-container {
   text-align: center;
   border: black 1px dashed;
+}
+
+#tester{
+  margin: 0px;
+  padding: 0px;
+  background-image: url("../pictures/loginBack.jpg");
+  background-size: cover;
+}
+
+.loginbox{
+  width: 420px;
+  height: 560px;
+  background: #344243;
+  color: #fff;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50% , -50%);
+  box-sizing: border-box;
+  padding: 50px 90px;
+  border-radius: 20px;
+}
+
+.loginbox label{
+  font-weight: bold;
+}
+
+.loginbox input{
+  margin-bottom: 20px;
+  width: 100%;
+}
+
+.loginbox input[type = "text"], input[type = "password"]{
+  border: none;
+  outline: none;
+  height: 40px;
+  border-bottom: 1px solid #fff;
+  background: transparent;
+  color: #fff;
+  font-size: 16px;
+}
+
+#loh1{
+  margin:0px;
+  text-align: center;
+  padding-bottom: 20px;
+
 }
