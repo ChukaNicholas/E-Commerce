@@ -73,7 +73,7 @@ class Listing {
         description,
         condition,
         upForAuction },
-        id : sellerID,
+        userId : sellerID,
       } = listingInfo
       const query = `
         INSERT INTO listings (name, image, price, seller_id, description, condition, up_for_auction)

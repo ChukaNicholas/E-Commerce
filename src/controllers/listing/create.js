@@ -1,13 +1,12 @@
 const createListing = async (req, res) => {
   const {
-    params: {id},
+    session: { userId },
     db:{Listing},
     body
   } = req;
   
-  const toNum = Number(id)
-  const listing = await Listing.create({body, toNum});
-  // console.log(listing)
+  const listing = await Listing.create({body, userId});
+  if(!listing) return sendStatus(404)
 
   res.send(listing);
   };

@@ -81,7 +81,7 @@ Object.assign(window, {
   getFetchOptions,
   fetchLoggedInUser,
   signupAndLoginHandler,
-  setNav,
+  //setNav,
   logOutHandler,
   updateUsernameHandler,
 });
@@ -91,7 +91,7 @@ export {
   getFetchOptions,
   fetchLoggedInUser,
   signupAndLoginHandler,
-  setNav,
+//  setNav,
   logOutHandler,
   updateUsernameHandler,
 };

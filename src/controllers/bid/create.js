@@ -1,9 +1,9 @@
 const createBid = async (req, res) => {
     const {
+      session : { userId : buyerID },
       params: {listing_id} ,
       body : {
         amount,
-        buyer_id : buyerID
       },
       db: {
         Listing,

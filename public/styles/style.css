@@ -2,11 +2,9 @@ body {
   font-family: sans-serif;
   
 }
-
 nav {
   height: 2rem;
 }
-
 nav ul {
   list-style: none;
   margin: 0;
@@ -14,23 +12,19 @@ nav ul {
   display: flex;
   gap: 1rem;
 }
-
 nav ul li:first-child {
   flex-grow: 1;
 }
-
 #secret-container {
   text-align: center;
   border: black 1px dashed;
 }
-
 #tester{
   margin: 0px;
   padding: 0px;
-  background-image: url("../pictures/loginBack.jpg");
+  background-image: url("../pictures/loginback_480.jpg");
   background-size: cover;
 }
-
 .loginbox{
   width: 420px;
   height: 560px;
@@ -44,16 +38,13 @@ nav ul li:first-child {
   padding: 50px 90px;
   border-radius: 20px;
 }
-
 .loginbox label{
   font-weight: bold;
 }
-
 .loginbox input{
   margin-bottom: 20px;
   width: 100%;
 }
-
 .loginbox input[type = "text"], input[type = "password"]{
   border: none;
   outline: none;
@@ -63,10 +54,12 @@ nav ul li:first-child {
   color: #fff;
   font-size: 16px;
 }
-
 #loh1{
   margin:0px;
   text-align: center;
   padding-bottom: 20px;
-
+}
+#createRef{
+  padding-top: 20px;
+  font-size: 12px;
 }
