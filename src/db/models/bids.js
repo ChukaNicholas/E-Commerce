@@ -8,11 +8,11 @@ class Bid {
   // to provide the controller with instances that
   // have access to the instance methods isValidPassword
   // and update.
-  constructor({ amount, sellerID, listingID, buyerID}) {
+  constructor({ amount, seller_id, listing_id, buyer_id}) {
     this.amount = amount;
-    this.sellerID = sellerID;
-    this.listingID = listingID;
-    this.buyerID = buyerID;
+    this.sellerID = seller_id;
+    this.listingID = listing_id;
+    this.buyerID = buyer_id;
   }
 
   static async list() {
@@ -52,12 +52,18 @@ class Bid {
     try {
       // const passwordHash = await authUtils.hashPassword(password);
 
-      const query = `INSERT INTO bids (amount, seller_id, listing_id, buyer_id)
-        VALUES (?, ?, ?, ?) RETURNING *
-        
-        UPDATE listings SET up_for_auction = TRUE WHERE listing_id = ?
+      const query1 = `
+        INSERT INTO bids (amount, seller_id, listing_id, buyer_id)
+        VALUES (?, ?, ?, ?) 
+        RETURNING *;
         `;
-      const { rows: [bid] } = await knex.raw(query, [amount, sellerID, listingID, buyerID, listingID] ); // some array of variables
+      const { rows: [bid] } = await knex.raw(query1, [amount, sellerID, listingID, buyerID] ); // some array of variables
+      const query2 = `
+      UPDATE listings
+      SET price = ?, last_updated = NOW()
+      WHERE id = ?;
+      `;
+      const { rows: [listing] } = await knex.raw(query2, [amount, listingID] ); // some array of variables
       return new Bid(bid);
     } catch (err) {
       console.error(err);
@@ -67,7 +73,9 @@ class Bid {
 
   static async delete(listingID) {
     try {
-      const query = `DELETE FROM bids WHERE listing_id = ?`
+      const query = `DELETE FROM bids WHERE listing_id = ?
+      REUTRNING *
+      `
       const {rows: [bid]} = await knex.raw(query, [listingID])
       return Bid(bid)
     } catch (err) {

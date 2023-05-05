@@ -8,18 +8,22 @@ class Purchase {
   // to provide the controller with instances that
   // have access to the instance methods isValidPassword
   // and update.
-  constructor({ amountPaid, sellerID, listingID, buyerID, image}) {
-    this.amountPaid = amountPaid
-    this.sellerID = sellerID;
-    this.listingID = listingID;
-    this.buyerID = buyerID;
+  constructor({ price, seller_id, listing_id, buyer_id, image}) {
+    this.amountPaid = price
+    this.sellerID = seller_id;
+    this.listingID = listing_id;
+    this.buyerID = buyer_id;
     this.image = image
   }
 
   static async list(userID) {
     try {
-      const query = 'SELECT * FROM purchases WHERE buyer_id = ?;'; //
+      const query = `
+      SELECT * 
+      FROM purchases 
+      WHERE buyer_id = ?;`; 
       const { rows } = await knex.raw(query, [userID]);
+      console.log(rows)
       return rows.map((purchase) => new Purchase(purchase));
     } catch (err) {
       console.error(err);
@@ -52,10 +56,16 @@ class Purchase {
   static async create(amountPaid, sellerID, listingID, buyerID, image) {
     try {
       // const passwordHash = await authUtils.hashPassword(password);
-
-      const query = `INSERT INTO purchases (price, seller_id, listing_id, buyer_id, image)
-        VALUES (?, ?, ?, ?, ?) RETURNING *`;
-      const { rows: [purchase] } = await knex.raw(query, [amountPaid, sellerID, listingID, buyerID, image]); // some array of variables
+      const query1 = `
+        INSERT INTO purchases (price, seller_id, listing_id, buyer_id, image)
+        VALUES (?, ?, ?, ?, ?) 
+        RETURNING *;`
+      const { rows: [purchase] } = await knex.raw(query1, [amountPaid, sellerID, listingID, buyerID, image]);
+      const query2 = `
+        DELETE FROM listings  
+        WHERE id = ?
+        RETURNING *;`
+      const { rows: [listing] } = await knex.raw(query2, [listingID]);
       return new Purchase(purchase);
     } catch (err) {
       console.error(err);
@@ -65,8 +75,10 @@ class Purchase {
 
   static async delete(purchaseID) {
     try {
-      const query = `DELETE FROM purchases WHERE purchase_id = ?
-      RETURNING *`
+      const query = `
+      DELETE FROM purchases 
+      WHERE purchase_id = ?
+      RETURNING *;`
       const { rows: [purchase] } = await knex.raw(query, [purchaseID]); // some array of variables
       return new Purchase(purchase);
     } catch (err) {
