@@ -8,7 +8,7 @@ const listNotUserListing = async (req, res) => {
 
     if (!listings) return res.sendStatus(404);
   
-    res.send(listings);
+    // res.send(listings);
   };
   
   module.exports = listNotUserListing;

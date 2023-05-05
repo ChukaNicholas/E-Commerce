@@ -41,6 +41,7 @@ Router.get('/logged-in-secret', checkAuthentication, (req, res) => {
  Router.get('/find-listing/:listing_id', listingController.find)
  Router.get('/show-user-purchases', purchaseController.list)
 
+
 // Update
 Router.patch('/users/:id', checkAuthentication, userController.update);
 
