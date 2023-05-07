@@ -8,23 +8,39 @@
   <script type="module" src="./scripts/user.js"></script>
   <title>User</title>
 </head>
-<body>
-  <nav id="main-nav"></nav>
+<body id = "userPage" style = "margin:0px">
+  <!-- <nav id="main-nav"></nav> -->
   <main>
-    <h1 id="username"></h1>
+    <nav id = "top-bar">
+      <a href = "index.html"><img id = "homeButton" src = "./pictures/eccomerce_360.png" style="width:160px"></a>
+      <a href = "user.html"><img id = "userButton" src = "./pictures/user.png" style="width:103px"></a>
+    </nav>
+    <h1 id="username" style = "margin:0px"></h1></h1>
+    <div id = "form1">
+      <div id = form1_user>
+        <h4 id="rename">Update Username</h4>
+        <form id="username-form" aria-labelledby="rename">
+          <label for="username">Username:</label>
+          <input type="text" name="username" id="username-input">
+          <button type="submit">Update Username</button>
+        </form>
+      </div>
 
-    <p id="rename">Update Username</p>
-    <form id="username-form" aria-labelledby="rename">
-      <label for="username">Username:</label>
-      <input type="text" name="username" id="username-input">
-      <button type="submit">Update Username</button>
-    </form>
-
-    <hr>
-
-    <form id="logout-form" aria-label="logout">
-      <button type="submit">Log Out</button>
-    </form>
+      <form id="logout-form" aria-label="logout">
+        <button type="submit">Log Out</button>
+      </form>
+    </div>
+    <div id="content">
+      <h1 style = >WELCOME <h1 id = "userFiller" style = "margin-left: 5px;">[USERNAME]</h1></h1>
+    </div>
+    <div style="display:flex;justify-content:center;">
+      <button id = "listItem" onclick="window.location.href='#';">
+        List an Item
+      </button>
+    </div>
+    <div>
+      
+    </div>
   </main>
 </body>
 </html>

@@ -63,3 +63,87 @@ nav ul li:first-child {
   padding-top: 20px;
   font-size: 12px;
 }
+
+#indexPage{
+  background-color: black;
+  height: 2000px;
+}
+
+#homeButton , #userButton{
+  padding-left: 10px;
+  cursor: pointer;
+}
+
+#userButton{
+  border-radius: 50%;
+}
+
+#top-bar{
+  background-color: gray;
+  height: 100px;
+  display:flex;
+  justify-content: space-between; 
+  border-bottom: 0.5px solid #fff;
+}
+
+#marketContent{
+  display: flex;
+  height: 1150px;
+}
+
+#products{
+  width: 85%;
+}
+
+#side-bar h1{
+  font-size: 40px;
+  
+}
+#userPage{
+  background-image: url("../pictures/loginback_480.jpg");
+  background-size: cover;
+}
+#form1{
+  background-color: #000;
+  color:#FFF;
+}
+
+#form1_user{
+  display:flex;
+}
+
+#rename{
+  margin:0px 20px;
+}
+
+#logout-form{
+  margin-top: 20px;
+  margin-left: 20px;
+}
+
+#content{
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  font-size: 40px; 
+}
+
+#listItem{
+  width:200px;
+  padding:15px 0;
+  text-align: center;
+  margin:20px 10px;
+  border-radius: 25px;
+  font-weight: bold;
+  border:2px solid #000;
+  background: transparent;
+  cursor:pointer;
+  font-size:20px;
+}
+
+#listItem:hover{
+  background: #000;
+  color:#FFF
+}
+
+
