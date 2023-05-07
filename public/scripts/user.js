@@ -38,6 +38,23 @@ const main = async () => {
 
   // setNav(!!user); 
   renderUsername(user.username);
+
+  let listData, boughtData
+  const getUserListings = async (url) => {
+    const [response, _err] = await handleFetch(url, { credentials: 'include' });
+    if (_err) {
+      return alert('Something went wrong');
+      
+    }else{
+      console.log("This works")
+    }
+    return response
+  }
+
+  listData = await getUserListings("/api/user-listing") 
+  boughtData = await getUserListings("/api/show-user-purchases")
+    
+  console.log(listData , boughtData)
 };
 
 main();

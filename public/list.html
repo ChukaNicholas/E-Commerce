@@ -15,53 +15,32 @@
             <a href = "user.html"><img id = "userButton" src = "./pictures/user.png" style="width:103px"></a>
         </nav>
         <content>
-            <!-- <form id = "listForm">
-
-            </form> -->
-            <form id="contact-form" action="script.php" method="post">
+            <form id="listItem-form" action="script.php" method="post">
 
                 <ul>
                     <li><label for="name">Name:</label> <input type="text" name="name" id="name" value="" /></li>
-                    <li><label for="email">Price</label> <input type="number" name="price" id="price" min = "0" value="" /></li>
+                    <li><label for="email">Price</label> <input type="number" name="price" id="price" min = "0" step = "0.01" value="" /></li>
                 </ul>
                 
                 <ul>
-                  <li>Please check all the emotions that apply to you:
-                    <ul>
-                      <li><label for="angry">Angry</label> <input type="checkbox" name="angry" id="angry" value="angry"></li>
-                      <li><label for="sad">Sad</label> <input type="checkbox" name="sad" id="sad" value="sad"></li>
-                      <li><label for="happy">Happy</label> <input type="checkbox" name="happy" id="happy" value="happy"></li>
-                      <li><label for="ambivalent">Ambivalent</label> <input type="checkbox" name="ambivalent" id="ambivalent" value="ambivalent"></li>
-                    </ul>
-                  </li>
-                  <!-- <li>What is the condition of the item you wish to sell?
+                  <li>What is the condition of the item you wish to sell?
                     <ul>
                       <li><label for="new">New</label> <input type="radio" name="condition" id="new" value="new"></li>
                       <li><label for="used">Used</label> <input type="radio" name="condition" id="used" value="used"></li>
                       <li><label for="refurbished">Refurbished</label> <input type="radio" name="condition" id="refurbished" value="refurbished"></li>
                       <li><label for="broken">Broken</label> <input type="radio" name="condition" id="broken" value="broken"></li>
                     </ul>
-                  </li> -->
+                  </li>
                   <li><label for="comments">Further comments:</label> <textarea name="comments" id="comments" cols="25" rows="3"></textarea></li>
                 </ul>
                 
                 <ul>
-                  <li><label for="photo">Bio photo:</label> <input type="file" name="photo" id="photo" value="" /></li>
-                  <li><label for="location">Location visited:</label>
-                  <select name="location" id="location">
-                    <option value="">Select location</option>
-                    <option value="nyork">New York</option>
-                    <option value="vancouver">Vancouver</option>
-                    <option value="atlantis">Atlantis</option>
-                    <option value="alpha">Alpha Centauri</option>
-                    <option value="blackpool">Blackpool</option>
-                    <option value="bognor">Bognor Regis</option>
-                  </select></li>
+                  <!-- <li><label for="photo">Picture:</label> <input type="file" name="photo" id="photo" value=""/></li> -->
+                  <li><label for="photo">Picture:</label> <input type="text" name="photo" id="photo" value="" placeholder="Enter Url" /></li>
+                  <li><input type="submit" value="submit" /></li>
                 </ul>
-                
-                <li><input type="submit" value="submit" /></li>
-                
-                </form>
+
+            </form>
         </content>
     </main>
 </body>
