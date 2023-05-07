@@ -1,7 +1,7 @@
-GET http://localhost:3000/api/users
+GET http://localhost:5500/api/users
 
 #######################################
-POST http://localhost:3000/api/users
+POST http://localhost:5500/api/users
 Content-Type: application/json
 
 {
@@ -10,7 +10,7 @@ Content-Type: application/json
 }
 
 #######################################
-POST http://localhost:3000/api/users/login
+POST http://localhost:5500/api/users/login
 Content-Type: application/json
 
 {
@@ -20,32 +20,32 @@ Content-Type: application/json
 
 #################################################
 
-GET http://localhost:3000/api/me
+GET http://localhost:5500/api/me
 
 #######################################
-GET http://localhost:3000/api/users/19
+GET http://localhost:5500/api/users/19
 
 #######################################
-DELETE http://localhost:3000/api/users/logout
+DELETE http://localhost:5500/api/users/logout
 
 #######################################
-GET http://localhost:3000/api/logged-in-secret
+GET http://localhost:5500/api/logged-in-secret
 
 /////////////////
 ///Listing API///
 /////////////////
 
 #######################################
-GET http://localhost:3000/api/marketplace
+GET http://localhost:5500/api/marketplace
 
 #######################################
-GET http://localhost:3000/api/user-listing
+GET http://localhost:5500/api/user-listing
 
 #######################################
-GET http://localhost:3000/api/find-listing/1
+GET http://localhost:5500/api/find-listing/1
 
 #######################################
-POST http://localhost:3000/api/create-listing
+POST http://localhost:5500/api/create-listing
 Content-Type: application/json
 
 {

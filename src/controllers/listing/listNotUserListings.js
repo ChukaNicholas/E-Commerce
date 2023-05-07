@@ -3,12 +3,12 @@ const listNotUserListing = async (req, res) => {
       session : {userId},
      db:{Listing},
     } = req
-
+    // console.log()
     const listings = await Listing.listNotUserListings(userId)
 
     if (!listings) return res.sendStatus(404);
   
-    // res.send(listings);
+    res.send(listings);
   };
   
   module.exports = listNotUserListing;

@@ -3,7 +3,7 @@ import {
   fetchLoggedInUser,
   logOutHandler,
   updateUsernameHandler,
-  setNav,
+  // setNav,
 } from './global.js';
 
 const isAuthError = (err) => (err.status === 401 || err.status === 403);
@@ -36,7 +36,7 @@ const main = async () => {
 
   updateUsernameForm.dataset.userId = user.id;
 
-  setNav(!!user);
+  // setNav(!!user); 
   renderUsername(user.username);
 };
 

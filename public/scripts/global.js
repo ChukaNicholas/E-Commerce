@@ -19,6 +19,7 @@ const getFetchOptions = (body, method = 'POST') => ({
   body: JSON.stringify(body),
 });
 
+
 // CREATE USER
 const signupAndLoginHandler = async (url, form) => {
   const formData = new FormData(form);
@@ -58,21 +59,21 @@ const logOutHandler = async () => {
 };
 
 // Nav Helper
-const setNav = (hasLoggedInUser) => {
-  const loggedOutNavHtml = `<ul>
-    <li><a href="/">Home</a></li>
-    <li><a href="./create.html">Sign Up</a></li>
-    <li><a href="./login.html">Login</a></li>
-  </ul>`;
+// const setNav = (hasLoggedInUser) => {
+//   const loggedOutNavHtml = `<ul>
+//     <li><a href="/">Home</a></li>
+//     <li><a href="./create.html">Sign Up</a></li>
+//     <li><a href="./login.html">Login</a></li>
+//   </ul>`;
 
-  const loggedInNavHtml = `<ul>
-    <li><a href="/">Home</a></li>
-    <li><a href="./user.html">Profile</a></li>
-  </ul>`;
+//   const loggedInNavHtml = `<ul>
+//     <li><a href="/">Home</a></li>
+//     <li><a href="./user.html">Profile</a></li>
+//   </ul>`;
 
-  const navHtml = hasLoggedInUser ? loggedInNavHtml : loggedOutNavHtml;
-  document.querySelector('nav').innerHTML = navHtml;
-};
+//   const navHtml = hasLoggedInUser ? loggedInNavHtml : loggedOutNavHtml;
+//   document.querySelector('nav').innerHTML = navHtml;
+// };
 
 // This is wonky. Once you learn about bundlers we won't have to
 // explicitly create globals. We just lack the tools right now.
@@ -81,7 +82,7 @@ Object.assign(window, {
   getFetchOptions,
   fetchLoggedInUser,
   signupAndLoginHandler,
-  //setNav,
+  // setNav,
   logOutHandler,
   updateUsernameHandler,
 });
@@ -91,7 +92,7 @@ export {
   getFetchOptions,
   fetchLoggedInUser,
   signupAndLoginHandler,
-//  setNav,
+  // setNav,
   logOutHandler,
   updateUsernameHandler,
 };
