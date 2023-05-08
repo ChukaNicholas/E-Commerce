@@ -27,7 +27,7 @@ import {
     
 
     
-    form.addEventListener('submit', createListingRequest)
+    form.addEventListener('submit', (e) => createListingRequest(e))
     
   }
 
