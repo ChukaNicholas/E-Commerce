@@ -7,18 +7,28 @@ import {
   } from './global.js';
 
   const main = async () => {
-    let formData
+    // let formData = {}
+
     const form = document.querySelector("#listItem-form")
-    form.addEventListener('submit', (e) => {
-        e.preventDefault()
-        const formData = new FormData(form)
-        for (const pair of formData.entries()) {
-          //console.log(pair)
-          formData[pair[0]] = pair[0] 
-          console.log(pair)  
-        }
-      })
-      console.log(formData)
+    const url = '/api/create-listing'
+    const createListingRequest = async (e) => {
+      e.preventDefault()
+      const formData = new FormData(form)
+      const options = getFetchOptions(Object.fromEntries(formData.entries()));
+      console.log(formData, options)
+      const [response, err] = await handleFetch(url, options)
+      console.log(response)
+      if (err) {
+        form.reset();
+        return alert('Something went wrong');
+      }
+      return response
+    }
+    
+
+    
+    form.addEventListener('submit', createListingRequest)
+    
   }
 
   main()
